@@ -27,7 +27,7 @@ private:
 
 	void AimTowardsCrosshair();
 
-	bool GetSightRayHitlocation(FVector& OutHitlocation) const;
+	bool GetSightRayHitlocation(FVector&) const;
 
 	UPROPERTY(EditAnywhere)
 		float CrosshairXLocation = 0.5;
@@ -35,5 +35,12 @@ private:
 	UPROPERTY(EditAnywhere)
 		float CrosshairYLocation = 0.3333;
 
+	UPROPERTY(EditAnywhere)
+		float LineTraceRange = 1000000;
+
 	bool GetLookDirection(FVector2D, FVector&) const;
+
+	bool GetLookVectorHitLocation(FVector, FVector&) const;
+
+
 };
