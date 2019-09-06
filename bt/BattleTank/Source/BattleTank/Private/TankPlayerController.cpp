@@ -3,7 +3,11 @@
 
 #include "TankPlayerController.h"
 
-
+void ATankPlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	AimTowardsCrosshair();
+}
 
 void ATankPlayerController::BeginPlay()
 {
@@ -21,7 +25,24 @@ void ATankPlayerController::BeginPlay()
 
 ATank* ATankPlayerController::GetControlledTank() const
 {
-
 	return Cast<ATank>(GetPawn());
+}
 
+void ATankPlayerController::AimTowardsCrosshair()
+{
+	if (!GetControlledTank()) { return; }
+
+	FVector HitLocation;
+	if (GetSightRayHitlocation(HitLocation))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Hit Location%s"), *(HitLocation.ToString()));
+
+		// TODO tell to aim
+	}
+}
+
+bool ATankPlayerController::GetSightRayHitlocation(FVector& OutHitlocation) const
+{
+	OutHitlocation = FVector(1.0);
+		return true;
 }
